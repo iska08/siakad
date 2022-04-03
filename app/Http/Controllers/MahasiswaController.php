@@ -17,7 +17,7 @@ class MahasiswaController extends Controller {
         $mahasiswa = $mahasiswa = DB::table('mahasiswa')->paginate(3); // Mengambil semua isi tabel
         $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
         return view('mahasiswa.index', compact('mahasiswa'));
-        with('i', (request()->input('page', 1) - 1) * 7);
+        with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function create() {
         return view('mahasiswa.create');
@@ -39,16 +39,11 @@ class MahasiswaController extends Controller {
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Ditambahkan');
     }
     public function search(Request $request)
-	{
-		// menangkap data pencarian
-		$search = $request->search;
- 
-    	// mengambil data dari table mahasiswa sesuai pencarian data
-		$mahasiswa = DB::table('mahasiswa')->where('nama','like',"%".$search."%")->paginate();
-    	// mengirim data mahasiswa ke view index
-		return view('index',['mahasiswa' => $mahasiswa]);
- 
-	}
+    {
+        $keyword = $request->search;
+        $mahasiswa = Mahasiswa::where('nama', 'like', "%" . $keyword . "%")->paginate(6);
+        return view('mahasiswa.index', compact('mahasiswa'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
     public function show($Nim) {
         // menampilkan detail data dengan menemukan/berdasarkan Nim Mahasiswa
         $Mahasiswa = DB::table('mahasiswa')->where('nim', $Nim)->first();
