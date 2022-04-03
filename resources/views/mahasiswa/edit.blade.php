@@ -20,7 +20,7 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="Nim">Nim</label>
+                        <label for="Nim">NIM</label>
                         <input type="text" name="Nim" class="form-control" id="Nim" value="{{ $Mahasiswa->nim }}" aria-describedby="Nim">
                     </div>
                     <div class="form-group">
@@ -29,11 +29,23 @@
                     </div>
                     <div class="form-group">
                         <label for="Kelas">Kelas</label>
-                        <input type="Kelas" name="Kelas" class="form-control" id="Kelas" value="{{ $Mahasiswa->kelas }}" aria-describedby="Kelas">
+                        <input type="text" name="Kelas" class="form-control" id="Kelas" value="{{ $Mahasiswa->kelas }}" aria-describedby="Kelas">
                     </div>
                     <div class="form-group">
                         <label for="Jurusan">Jurusan</label>
-                        <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria-describedby="Jurusan">
+                        <input type="text" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria-describedby="Jurusan">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="text" name="Email" class="form-control" id="Email" value="{{ $Mahasiswa->email }}" aria-describedby="Email" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Alamat">Alamat</label>
+                        <input type="text" name="Alamat" class="form-control" id="Alamat" value="{{ $Mahasiswa->alamat }}" aria-describedby="Alamat" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Tanggal Lahir">Tanggal Lahir</label>
+                        <input type="date" name="Tanggal Lahir" class="form-control" id="Tanggal Lahir" value="{{ $Mahasiswa->lahir }}" aria-describedby="Tanggal Lahir" >
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

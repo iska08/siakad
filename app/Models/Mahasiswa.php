@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Mahasiswa as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model; //Model Eloquent
+use Illuminate\Support\Carbon;
 
 class Mahasiswa extends Model { // Definisi Model
     protected $table='mahasiswa'; // Eloquent akan membuat model mahasiswa menyimpan record di tabel mahasiswa
@@ -19,6 +20,9 @@ class Mahasiswa extends Model { // Definisi Model
         'Nim',
         'Nama',
         'Kelas',
-        'Jurusan'
+        'Jurusan',
+        'Email',
+        'Alamat',
+        'Lahir'
     ];
 }

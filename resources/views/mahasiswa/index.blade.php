@@ -18,10 +18,13 @@
 @endif
 <table class="table table-bordered">
     <tr>
-        <th>Nim</th>
+        <th>NIM</th>
         <th>Nama</th>
         <th>Kelas</th>
         <th>Jurusan</th>
+        <th>Email</th>
+        <th>Alamat</th>
+        <th>Tanggal Lahir</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($mahasiswa as $mhs)
@@ -30,6 +33,9 @@
         <td>{{ $mhs ->nama }}</td>
         <td>{{ $mhs ->kelas }}</td>
         <td>{{ $mhs ->jurusan }}</td>
+        <td>{{ $mhs ->email }}</td>
+        <td>{{ $mhs ->alamat }}</td>
+        <td>{{ date('d-m-Y', strtotime($mhs ->lahir)) }} </td>
         <td>
             <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('mahasiswa.show',$mhs->nim) }}">Show</a>
@@ -41,5 +47,11 @@
         </td>
     </tr>
     @endforeach
+    
 </table>
+Current Page: {{ $mahasiswa->currentPage() }}<br>
+Jumlah Data: {{ $mahasiswa->total() }}<br>
+Data perhalaman: {{ $mahasiswa->perPage() }}<br>
+<br>
+{{ $mahasiswa->links() }}
 @endsection
