@@ -25,10 +25,11 @@ class MahasiswaController extends Controller {
     public function store(Request $request) {
         // melakukan validasi data
         $request->validate([
-            'Nim' => 'required',
+            'Nim' => 'required|digits_between:8,12',
             'Nama' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
+            'Hp' => 'required|digits_between:8,15',
             'Email' => 'required',
             'Alamat' => 'required',
             'Lahir' => 'required',
@@ -57,10 +58,11 @@ class MahasiswaController extends Controller {
     public function update(Request $request, $Nim) {
         // melakukan validasi data
         $request->validate([
-            'Nim' => 'required',
+            'Nim' => 'required|digits_between:10',
             'Nama' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
+            'Hp' => 'required|digits_between:8,15',
             'Email' => 'required',
             'Alamat' => 'required',
             'Lahir' => 'required',

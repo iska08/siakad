@@ -29,6 +29,7 @@
         <th>Nama</th>
         <th>Kelas</th>
         <th>Jurusan</th>
+        <th>No Handphone</th>
         <th>Email</th>
         <th>Alamat</th>
         <th>Tanggal Lahir</th>
@@ -40,6 +41,7 @@
         <td>{{ $mhs ->nama }}</td>
         <td>{{ $mhs ->kelas }}</td>
         <td>{{ $mhs ->jurusan }}</td>
+        <td>{{ $mhs ->hp }}</td>
         <td>{{ $mhs ->email }}</td>
         <td>{{ $mhs ->alamat }}</td>
         <td>{{ date('d-m-Y', strtotime($mhs ->lahir)) }} </td>
