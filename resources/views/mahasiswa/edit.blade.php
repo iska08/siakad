@@ -36,10 +36,6 @@
                         <input type="text" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria-describedby="Jurusan">
                     </div>
                     <div class="form-group">
-                        <label for="Hp">No Handphone</label>
-                        <input type="text" name="Hp" class="form-control" id="Hp" value="{{ $Mahasiswa->hp }}" aria-describedby="Hp">
-                    </div>
-                    <div class="form-group">
                         <label for="Email">Email</label>
                         <input type="text" name="Email" class="form-control" id="Email" value="{{ $Mahasiswa->email }}" aria-describedby="Email" >
                     </div>
