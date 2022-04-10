@@ -16,10 +16,11 @@ class MahasiswaController extends Controller {
     public function index() {
         $mahasiswa = Mahasiswa::with('kelas')->get();
         $paginate = Mahasiswa::orderBy('id_mahasiswa', 'asc')->paginate(3);
-        return view('mahasiswa.index', ['mahasiswa' =>  $mahasiswa, 'paginate' => $paginate]);
+        return view('mahasiswa.index', ['mahasiswa' => $mahasiswa, 'paginate' => $paginate]);
     }
     public function create() {
-        return view('mahasiswa.create');
+        $kelas = Kelas::all();
+        return view('mahasiswa.create', ['kelas' => $kelas]);
     }
     public function store(Request $request) {
         // melakukan validasi data
@@ -32,8 +33,23 @@ class MahasiswaController extends Controller {
             'Alamat' => 'required',
             'Lahir' => 'required',
         ]);
-        // fungsi eloquent untuk menambah data
-        Mahasiswa::create($request->all());
+        
+        $mahasiswa = new Mahasiswa;
+        $mahasiswa->nim = $request->get('Nim');
+        $mahasiswa->nama = $request->get('Nama');
+        $mahasiswa->jurusan = $request->get('Jurusan');
+        $mahasiswa->email = $request->get('Email');
+        $mahasiswa->alamat = $request->get('Alamat');
+        $mahasiswa->lahir = $request->get('Lahir');
+        $mahasiswa->save();
+
+        $kelas = new Kelas;
+        $kelas->id = $request->get('Kelas');
+
+        // fungsi eloquent untuk menambah data dengan relasi belongsTo
+        $mahasiswa->kelas()->associate($kelas);
+        $mahasiswa->save();
+        
         // jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Ditambahkan');
     }
