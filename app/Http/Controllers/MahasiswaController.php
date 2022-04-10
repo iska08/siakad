@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\Mahasiswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller {
@@ -13,11 +14,9 @@ class MahasiswaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        // fungsi eloquent menampilkan data menggunakan pagination
-        $mahasiswa = $mahasiswa = DB::table('mahasiswa')->paginate(3); // Mengambil semua isi tabel
-        $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
-        return view('mahasiswa.index', compact('mahasiswa'));
-        with('i', (request()->input('page', 1) - 1) * 5);
+        $mahasiswa = Mahasiswa::with('kelas')->get();
+        $paginate = Mahasiswa::orderBy('id_mahasiswa', 'asc')->paginate(3);
+        return view('mahasiswa.index', ['mahasiswa' =>  $mahasiswa, 'paginate' => $paginate]);
     }
     public function create() {
         return view('mahasiswa.create');
@@ -29,7 +28,6 @@ class MahasiswaController extends Controller {
             'Nama' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
-            'Hp' => 'required|digits_between:8,15',
             'Email' => 'required',
             'Alamat' => 'required',
             'Lahir' => 'required',
@@ -62,7 +60,6 @@ class MahasiswaController extends Controller {
             'Nama' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
-            'Hp' => 'required|digits_between:8,15',
             'Email' => 'required',
             'Alamat' => 'required',
             'Lahir' => 'required',
