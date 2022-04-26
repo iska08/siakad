@@ -14,6 +14,7 @@
                     <li class="list-group-item"><b>Email: </b>{{$Mahasiswa->email}}</li>
                     <li class="list-group-item"><b>Alamat: </b>{{$Mahasiswa->alamat}}</li>
                     <li class="list-group-item"><b>Tanggal Lahir: </b>{{date('d-m-Y', strtotime($Mahasiswa->lahir))}}</li>
+                    <li class="list-group-item"><b>Foto Mahasiswa: </b>{{$Mahasiswa->image}}</li>
                 </ul>
             </div>
             <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>

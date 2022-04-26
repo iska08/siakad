@@ -27,6 +27,7 @@
     <tr>
         <th>NIM</th>
         <th>Nama</th>
+        <th>Foto Mahasiswa</th>
         <th>Kelas</th>
         <th>Jurusan</th>
         <th>Email</th>
@@ -38,6 +39,7 @@
     <tr>
         <td>{{ $mhs ->nim }}</td>
         <td>{{ $mhs ->nama }}</td>
+        <td>{{ $mhs ->image }}</td>
         <td>{{ $mhs ->kelas->nama_kelas }}</td>
         <td>{{ $mhs ->jurusan }}</td>
         <td>{{ $mhs ->email }}</td>

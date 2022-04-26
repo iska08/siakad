@@ -27,16 +27,22 @@ class MahasiswaController extends Controller {
         $request->validate([
             'Nim' => 'required|digits_between:8,12',
             'Nama' => 'required',
+            'Image' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
             'Email' => 'required',
             'Alamat' => 'required',
             'Lahir' => 'required',
         ]);
+
+        if($request->file('image')) {
+            $image_name = $request->file('image')->store('image', 'public');
+        }
         
         $mahasiswa = new Mahasiswa;
         $mahasiswa->nim = $request->get('Nim');
         $mahasiswa->nama = $request->get('Nama');
+        $mahasiswa->image = $image_name;
         $mahasiswa->jurusan = $request->get('Jurusan');
         $mahasiswa->email = $request->get('Email');
         $mahasiswa->alamat = $request->get('Alamat');
@@ -76,16 +82,24 @@ class MahasiswaController extends Controller {
         $request->validate([
             'Nim' => 'required|digits_between:8,12',
             'Nama' => 'required',
+            'Image' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
             'Email' => 'required',
             'Alamat' => 'required',
             'Lahir' => 'required',
         ]);
-        
+
         $mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
         $mahasiswa->nim = $request->get('Nim');
         $mahasiswa->nama = $request->get('Nama');
+        
+        if ($mahasiswa->image && file_exists(storage_path('app/public/' . $mahasiswa->image))) {
+            \Storage::delete('public/' . $mahasiswa->image);
+        }
+        $image_name = $request->file('image')->store('images', 'public');
+        
+        $mahasiswa->image = $image_name;
         $mahasiswa->jurusan = $request->get('Jurusan');
         $mahasiswa->email = $request->get('Email');
         $mahasiswa->alamat = $request->get('Alamat');
